@@ -19,13 +19,14 @@ func NewStorage() (Storage, error) {
 	defer logger.Sync()
 	logger.Info("new storage created")
 	return Storage{
-		ins: make(map[string]string),
+		ins:    make(map[string]string),
+		logger: logger,
 	}, nil
 }
 
 func (rf Storage) Set(key, value string) {
 	rf.ins[key] = value
-	rf.logger.Info("new key set")
+	rf.logger.Info("key set")
 	rf.logger.Sync()
 }
 

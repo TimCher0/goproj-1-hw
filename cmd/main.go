@@ -13,6 +13,6 @@ func main() {
 	}
 
 	st.Set("key2", "222")
-	rlt2 := st.GetKind("key2")
-	fmt.Println(rlt2)
+	rlt2 := st.Get("key2")
+	fmt.Println(*rlt2)
 }
