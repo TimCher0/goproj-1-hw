@@ -42,7 +42,7 @@ func (rf Storage) Get(key string) *string {
 func (rf Storage) GetKind(key string) string {
 	_, tr2 := strconv.Atoi(rf.ins[key])
 	if tr2 == nil {
-		return "d (key of type integer)"
+		return "d (value of type integer)"
 	}
-	return "c (key of type string)"
+	return "c (value of type string)"
 }
