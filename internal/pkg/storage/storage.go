@@ -44,5 +44,5 @@ func (rf Storage) GetKind(key string) string {
 	if tr2 == nil {
 		return "d (value of type integer)"
 	}
-	return "c (value of type string)"
+	return "s (value of type string)"
 }
