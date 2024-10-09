@@ -39,10 +39,23 @@ func (rf Storage) Get(key string) *string {
 	rf.logger.Sync()
 	return &res
 }
-func (rf Storage) GetKind(key string) string {
-	_, tr2 := strconv.Atoi(rf.ins[key])
-	if tr2 == nil {
-		return "d (value of type integer)"
+
+func (rf Storage) GetType(key string) string {
+	var res2 any
+	res2, tr2 := strconv.Atoi(rf.ins[key])
+	if tr2 != nil {
+		res2 = rf.ins[key]
 	}
-	return "s (value of type string)"
+	defer rf.logger.Sync()
+	switch res2.(type) {
+	case string:
+		rf.logger.Info(rf.ins[key], zap.String("type", "string"))
+		return "s"
+	case int:
+		rf.logger.Info(rf.ins[key], zap.String("type", "integer"))
+		return "d"
+	default:
+		rf.logger.Info(rf.ins[key], zap.String("type", "unknown"))
+		return "unidentified"
+	}
 }
